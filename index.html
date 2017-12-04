@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="CrmUsuario">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRM Usuarios</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+</head>
+
+<body ng-controller="MainController">
+
+    <nav style="background-color:green">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-6">
+                    <h3>Buscar por nombre<input ng-model="search.name" type="search"></h3>
+                    <h3>Buscar por email<input ng-model="search.email" type="text"></h3>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6" style="background-color:yelow">
+                    <div ng-repeat="usuario in list | filter:search track by usuario.id">
+                        <img ng-src="{{usuario.url}}" alt="foto">
+                        <h3>{{usuario.name}}</h3>
+                        <h3>{{usuario.phone}}</h3>
+                        <h3>{{usuario.email}}</h3>
+                        <h3>{{usuario.description}}</h3>
+                        <h3>{{usuario.otro}}</h3>
+                        <button ng-click="editar(usuario)">Editar</button>
+                        <button ng-click="eliminar(usuario)">Eliminar</button>
+                    </div>
+                    
+                    
+                    {{usuarioNuevo | json }}
+                    
+                </div>
+                
+                
+                
+<!--                Formulario -->
+                <div class="col-lg-6"  style="background-color:lightgrey">
+                   <form name="listaUsuario">
+                       
+                    <h3>Nombre Completo:</h3>
+                    <input type="text"  ng-model="usuarioNuevo.name">
+                    <h3>Url foto:</h3>
+                    <input type="url" ng-model="usuarioNuevo.url">
+                    <h3>Teléfono:</h3>
+                    <input type="tel"  ng-model="usuarioNuevo.tel">
+                    <h3>Email:</h3>
+                    <input ng-required="true" name="correo" type="email" ng-model="usuarioNuevo.email">
+                    <h3>Descripción:</h3>
+                    <input type="text"  ng-model="usuarioNuevo.description">
+                    <h3>Otros..</h3>
+                    <input type="text" ng-model="usuarioNuevo.otro">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button>CANCELAR</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button ng-if="!modificando" ng-click="adduser()">CREAR</button>
+                            <button ng-if="modificando" ng-click="modifyUser()">MODIFICAR</button>
+                        </div>
+                    </div>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <script src="js/main.js"></script>
+    <script src="js/usuario.factory.js"></script>
+    <script src="js/usuarioServer.factory.js"></script>
+    <script src="js/main.controller.js"></script>
+    
+</body>
+
+</html>
