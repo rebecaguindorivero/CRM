@@ -47,6 +47,7 @@
         }
         //conseguir que el usuario llegue limpio.
         function meTrajoAUno( usuario ){
+
             console.log(`El get de uno individual funcionó y trajo esto `, usuario)
         }
 
