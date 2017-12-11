@@ -55,6 +55,7 @@
             /*  Opcion 1: le pongo yo el identificador 
            $scope.usuarioNuevo.identificador = Date.now();
             
+
             // Esto es para actualizar la pantalla ( $scope.list )
             $scope.list.push($scope.usuarioNuevo);
             
